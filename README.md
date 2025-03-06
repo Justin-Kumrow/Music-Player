@@ -1,5 +1,6 @@
 🎵 MP3 Player with YouTube Playlist Downloader
 A lightweight and feature-rich MP3 player that supports local audio playback and YouTube playlist downloads using yt-dlp.
+I made this because I was made about how poorly optimized playlists on youtube are when you get over 200 songs and I am paying for premium, please do not use this if you are not paying for premium.
 
 🚀 Features
 Play MP3 files with an intuitive UI
