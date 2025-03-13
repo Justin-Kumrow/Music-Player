@@ -1,4 +1,3 @@
-
 from tkinter import filedialog
 from tkinter import *
 import yt_dlp
@@ -6,19 +5,29 @@ import pygame
 import os
 import random
 from tkinter import Tk, filedialog, Button, Entry, Label, StringVar, messagebox
+import ttkbootstrap as ttk
+from PIL import Image, ImageTk
+import threading
 
-root = Tk()
+root = ttk.Window(themename = "vapor")
 root.title('Music Player')
-root.geometry("600x300")
+root.geometry("1600x900")
 
 pygame.mixer.init()
 
 menubar = Menu(root)
 root.config(menu = menubar)
 
+
 songs = []
 current_song = ""
 paused = False
+
+def playListThread():
+    thread = threading.Thread(target= addPlaylist)
+    thread.start()
+
+
 
 def addPlaylist():
     def choose_folder():
@@ -73,7 +82,7 @@ def addPlaylist():
     # Create the main GUI window
     root = Tk()
     root.title("YouTube Playlist MP3 Downloader")
-    root.geometry("500x200")
+    root.geometry("800x450")
 
     # Playlist URL input
     Label(root, text="Enter Playlist URL:").grid(row=0, column=0, padx=10, pady=10)
@@ -171,12 +180,12 @@ organise_menu.add_command(label = 'Select Folder', command = load_music)
 menubar.add_cascade(label='organise', menu = organise_menu)
 
 yt_menu = Menu(menubar, tearoff = False)
-yt_menu.add_command(label= 'add playlist', command = addPlaylist)
-menubar.add_cascade(label = 'add playlist', menu= yt_menu)
+yt_menu.add_command(label= 'Add playlist', command = playListThread)
+menubar.add_cascade(label = 'Add playlist', menu= yt_menu)
 
 
 # Listbox for displaying songs
-songlist = Listbox(root, bg="black", fg="Blue", width=100, height=15, bd=2, relief="solid")
+songlist = Listbox(root, bg="black", fg="Blue", width=300, height=45, bd=2, relief="solid")
 songlist.pack(pady=10)
 
 # Load button images and keep references to them
